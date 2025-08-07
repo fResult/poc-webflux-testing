@@ -1,11 +1,11 @@
-package com.fresult.testing
+package com.fresult.producer
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class TestingApplication
+class ProducerApplication
 
 fun main(args: Array<String>) {
-  runApplication<TestingApplication>(*args)
+  runApplication<ProducerApplication>(*args)
 }
