@@ -24,4 +24,5 @@ kotlin {
 
 tasks.withType<Test> {
   useJUnitPlatform()
+  environment("TESTCONTAINERS_RYUK_DISABLED", "true")
 }
