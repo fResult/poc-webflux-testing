@@ -1,5 +1,6 @@
 package com.fresult.producer
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
@@ -21,6 +22,7 @@ class CustomerRepositoryTest {
     @Container
     val mongoDbContainer: MongoDBContainer = MongoDBContainer("mongo:8.0.12")
 
+    @JvmStatic
     @DynamicPropertySource
     fun setProperties(registry: DynamicPropertyRegistry): Unit =
       registry.add("spring.data.mongodb.uri", mongoDbContainer::getReplicaSetUrl)
@@ -37,15 +39,21 @@ class CustomerRepositoryTest {
     val setup = customerRepository.deleteAll()
       .thenMany(
         customerRepository.saveAll(Flux.just(customer1, customer2, customer3))
-      ).thenMany(
+      )
+      .thenMany(
         customerRepository.findByName(commonName)
       )
 
-    val isCommonName: (Customer) -> Boolean = { customer -> customer.name.equals(commonName, true) }
+    val isCommonName: (Customer) -> Boolean = { customer -> customer.name == commonName }
+    val assertCommonName: (Customer) -> Unit = { customer ->
+      assertEquals(commonName, customer.name)
+    }
 
     StepVerifier.create(setup)
-      .expectNextMatches(isCommonName)
-      .expectNextMatches(isCommonName)
+//      .expectNextMatches(isCommonName)
+//      .expectNextMatches(isCommonName)
+      .assertNext(assertCommonName)
+      .assertNext(assertCommonName)
       .verifyComplete()
   }
 }
