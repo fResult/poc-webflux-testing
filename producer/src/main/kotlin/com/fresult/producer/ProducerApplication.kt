@@ -1,4 +1,4 @@
-package com.fresult.producerr
+package com.fresult.producer
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

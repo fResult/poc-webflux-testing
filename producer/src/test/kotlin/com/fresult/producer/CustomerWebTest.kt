@@ -1,4 +1,4 @@
-package com.fresult.producerr
+package com.fresult.producer
 
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
