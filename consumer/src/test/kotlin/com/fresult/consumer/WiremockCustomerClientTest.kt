@@ -1,13 +1,16 @@
 package com.fresult.consumer
 
+import com.fresult.producer.Customer
 import com.github.tomakehurst.wiremock.client.WireMock
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock
 import org.springframework.core.env.Environment
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
+import reactor.test.StepVerifier
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 0)
@@ -39,5 +42,15 @@ class WiremockCustomerClientTest {
             .withBody(json)
         )
     )
+  }
+
+  @Test
+  fun `get all customers`() {
+    val customers = customerClient.getCustomers()
+
+    StepVerifier.create(customers)
+      .expectNext(Customer("1", "John Wick"))
+      .expectNext(Customer("2", "Thomas Anderson"))
+      .verifyComplete()
   }
 }
