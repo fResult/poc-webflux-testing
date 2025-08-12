@@ -1,4 +1,4 @@
-package com.fresult.producer
+package com.fresult.producerr
 
 import kotlinx.coroutines.reactive.awaitSingle
 import org.springframework.context.annotation.Bean

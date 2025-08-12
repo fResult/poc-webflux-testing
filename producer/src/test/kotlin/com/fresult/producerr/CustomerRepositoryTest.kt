@@ -1,4 +1,4 @@
-package com.fresult.producer
+package com.fresult.producerr
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

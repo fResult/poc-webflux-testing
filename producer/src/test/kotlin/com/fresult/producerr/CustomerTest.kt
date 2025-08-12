@@ -1,4 +1,4 @@
-package com.fresult.producer
+package com.fresult.producerr
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers

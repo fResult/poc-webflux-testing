@@ -1,4 +1,4 @@
-package com.fresult.producer
+package com.fresult.producerr
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import reactor.core.publisher.Flux
