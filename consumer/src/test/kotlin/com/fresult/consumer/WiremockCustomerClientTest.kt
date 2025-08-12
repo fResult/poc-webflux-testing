@@ -1,6 +1,6 @@
 package com.fresult.consumer
 
-import com.fresult.producer.Customer
+import com.fresult.producer.CustomerResponse
 import com.github.tomakehurst.wiremock.client.WireMock
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -49,8 +49,8 @@ class WiremockCustomerClientTest {
     val customers = customerClient.getCustomers()
 
     StepVerifier.create(customers)
-      .expectNext(Customer("1", "John Wick"))
-      .expectNext(Customer("2", "Thomas Anderson"))
+      .expectNext(CustomerResponse("1", "John Wick"))
+      .expectNext(CustomerResponse("2", "Thomas Anderson"))
       .verifyComplete()
   }
 }

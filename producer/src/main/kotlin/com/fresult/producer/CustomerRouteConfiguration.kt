@@ -17,6 +17,7 @@ class CustomerRouteConfiguration(private val repository: CustomerRepository) {
 
   private suspend fun all(request: ServerRequest): ServerResponse =
     repository.findAll()
+      .map(CustomerResponse::fromDAO)
       .collectList()
       .flatMap(ServerResponse.ok()::bodyValue)
       .awaitSingle()

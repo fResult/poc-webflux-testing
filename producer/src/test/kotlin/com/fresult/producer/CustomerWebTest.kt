@@ -33,8 +33,8 @@ class CustomerWebTest {
       .isOk
       .expectHeader()
       .contentType(MediaType.APPLICATION_JSON)
-      .expectBodyList(Customer::class.java)
+      .expectBodyList(CustomerResponse::class.java)
       .hasSize(2)
-      .contains(Customer("1", "John"), Customer("2", "Smith"))
+      .contains(CustomerResponse("1", "John"), CustomerResponse("2", "Smith"))
   }
 }

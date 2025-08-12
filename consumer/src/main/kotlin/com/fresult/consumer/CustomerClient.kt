@@ -1,6 +1,6 @@
 package com.fresult.consumer
 
-import com.fresult.producer.Customer
+import com.fresult.producer.CustomerResponse
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.beans.factory.annotation.Qualifier
@@ -20,10 +20,10 @@ class CustomerClient(@Qualifier("webCustomerClient") private val client: WebClie
       log.info("Base URL set to: $field")
     }
 
-  fun getCustomers(): Flux<Customer> {
+  fun getCustomers(): Flux<CustomerResponse> {
     return client.get()
       .uri("http://$base/customers")
       .retrieve()
-      .bodyToFlux(Customer::class.java)
+      .bodyToFlux(CustomerResponse::class.java)
   }
 }
