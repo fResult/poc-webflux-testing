@@ -9,6 +9,8 @@ group = "com.fResult"
 version = "0.0.1"
 
 dependencies {
+  implementation(project(":producer"))
+
   // TODO: Remove the specific version `5.0.0-M1` when Spring Boot 4.0.0 is released
   implementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner:5.0.0-M1")
 }
