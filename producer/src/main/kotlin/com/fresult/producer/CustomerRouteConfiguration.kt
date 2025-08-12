@@ -1,20 +1,23 @@
 package com.fresult.producer
 
-import kotlinx.coroutines.reactive.asFlow
+import kotlinx.coroutines.reactive.awaitSingle
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.RouterFunction
+import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
-import org.springframework.web.reactive.function.server.bodyAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 
 @Configuration
 class CustomerRouteConfiguration(private val repository: CustomerRepository) {
   @Bean
   fun customerRoutes(): RouterFunction<ServerResponse> = coRouter {
-    GET("/customers") { req ->
-      val customers = repository.findAll()
-      ServerResponse.ok().bodyAndAwait(customers.asFlow())
-    }
+    GET("/customers", ::all)
   }
+
+  private suspend fun all(request: ServerRequest): ServerResponse =
+    repository.findAll()
+      .collectList()
+      .flatMap(ServerResponse.ok()::bodyValue)
+      .awaitSingle()
 }
