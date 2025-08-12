@@ -12,6 +12,8 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 
   testImplementation("org.springframework.boot:spring-boot-testcontainers")
+  // TODO: Remove the specific version `5.0.0-M1` when Spring Boot 4.0.0 is released
+  testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier:5.0.0-M1")
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:mongodb")
 }
