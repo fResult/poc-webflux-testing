@@ -3,10 +3,14 @@ plugins {
   kotlin("plugin.spring") version "2.2.0"
   id("org.springframework.boot") version "4.0.0-M1"
   id("io.spring.dependency-management") version "1.1.7"
+  // TODO: Remove the specific version `-M1` from `5.0.0-M1` when Spring Boot 4.0.0 is released
+  id("org.springframework.cloud.contract") version "5.0.0-M1"
 }
 
-group = "com.fResult"
+group = "com.fresult"
 version = "0.0.1"
+
+val springWebTestClientVersion = "5.5.5"
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
@@ -16,6 +20,7 @@ dependencies {
   testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier:5.0.0-M1")
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:mongodb")
+  testImplementation("io.rest-assured:spring-web-test-client:$springWebTestClientVersion")
 }
 
 kotlin {
