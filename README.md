@@ -16,8 +16,26 @@ Otherwise, we can use `./gradlew clean bootJar` instead of `./gradlew clean buil
 
 ### Build
 
+Build and publish the artifacts (with stubs) to the local Maven repository:
+
 ```bash
-./gradlew clean build \
-  :producer:clean :producer:build \
-  :consumer:clean :consumer:build
+./gradlew :producer:clean :producer:bootJar :producer:publishToMavenLocal
+```
+
+Verify the build by checking the stubs of the Maven repository:
+
+```console
+➜ ls -l ~/.m2/repository/com/fresult/producer/0.0.1
+total 64
+-rw-r--r--@ 1 fresult  staff  14351 Aug 16 20:01 producer-0.0.1-plain.jar
+-rw-r--r--@ 1 fresult  staff   1654 Aug 16 20:01 producer-0.0.1-stubs.jar
+-rw-r--r--@ 1 fresult  staff   3423 Aug 16 20:01 producer-0.0.1.module
+-rw-r--r--@ 1 fresult  staff   6866 Aug 16 20:01 producer-0.0.1.pom
+```
+
+Build `consumer` module
+
+```bash
+./gradlew :consumer:clean :consumer:build
+./gradlew :consumer:test --tests "com.fresult.consumer.StubRunnerCustomerClientTest"
 ```
