@@ -6,9 +6,11 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerPort
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties
+import org.springframework.test.annotation.DirtiesContext
 import reactor.test.StepVerifier
 import kotlin.test.Test
 
+@DirtiesContext
 @SpringBootTest(
   webEnvironment = SpringBootTest.WebEnvironment.MOCK,
   classes = [ConsumerApplication::class],
