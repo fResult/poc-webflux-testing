@@ -1,7 +1,8 @@
 plugins {
   kotlin("jvm") version "2.2.0"
   kotlin("plugin.spring") version "2.2.0"
-  id("org.springframework.boot") version "4.0.0-M1"
+  // id("org.springframework.boot") version "4.0.0-M1"
+  id("org.springframework.boot") version "3.5.4"
   id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -12,7 +13,8 @@ dependencies {
   implementation(project(":producer"))
 
   // TODO: Remove the specific version `5.0.0-M1` when Spring Boot 4.0.0 is released
-  testImplementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner:5.0.0-M1")
+  // testImplementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner:5.0.0-M1")
+  testImplementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner")
 }
 
 kotlin {

@@ -7,7 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.mockito.BDDMockito.given
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.web.server.test.LocalServerPort
+// import org.springframework.boot.web.server.test.LocalServerPort // <-- Uncomment if using Spring Boot version >= 4.0.0
+import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.bean.override.mockito.MockitoBean

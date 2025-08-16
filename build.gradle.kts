@@ -1,9 +1,12 @@
 plugins {
   kotlin("jvm") version "2.2.0"
   kotlin("plugin.spring") version "2.2.0"
-  id("org.springframework.boot") version "4.0.0-M1"
+//  id("org.springframework.boot") version "4.0.0-M1"
+  id("org.springframework.boot") version "3.5.4"
   id("io.spring.dependency-management") version "1.1.7"
 }
+
+val springCloudVersion = "2025.0.0"
 
 allprojects {
   group = "com.fResult"
@@ -44,6 +47,12 @@ subprojects {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    dependencyManagement {
+      imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
+      }
+    }
   }
 
   tasks.withType<Test> {
