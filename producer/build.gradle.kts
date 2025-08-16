@@ -1,3 +1,5 @@
+import kotlin.contracts.contract
+
 plugins {
   kotlin("jvm") version "2.2.0"
   kotlin("plugin.spring") version "2.2.0"
@@ -10,7 +12,7 @@ plugins {
 group = "com.fresult"
 version = "0.0.1"
 
-val springWebTestClientVersion = "5.5.5"
+val springWebTestClientVersion = "5.5.6"
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
@@ -20,7 +22,7 @@ dependencies {
   testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier:5.0.0-M1")
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:mongodb")
-  testImplementation("io.rest-assured:spring-web-test-client:$springWebTestClientVersion")
+  testImplementation("io.rest-assured:spring-web-test-client")
 }
 
 kotlin {
@@ -32,4 +34,11 @@ kotlin {
 tasks.withType<Test> {
   useJUnitPlatform()
   environment("TESTCONTAINERS_RYUK_DISABLED", "true") // Disable Ryuk container for tests
+}
+
+contracts {
+  baseClassForTests ="com.fresult.producer.BaseClass"
+  testFramework = org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
+  testMode = org.springframework.cloud.contract.verifier.config.TestMode.WEBTESTCLIENT
+  contractsDslDir = file("${project.projectDir}/src/contractTest/resources/contracts")
 }
