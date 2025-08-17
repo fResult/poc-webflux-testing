@@ -4,6 +4,11 @@ This repository is a parallel project to [Learning Webflux 3.0 (module
 `kotlin.08-testing`](https://github.com/fResult/Learn-Spring-Webflux-3.0/tree/main/kotlin/08-testing) and is used for
 learning R2DBC with Spring WebFlux.
 
+## Decision Record of the Project
+
+At first, I start this repository with Spring Boot 4.0.0-M1, but there are some compatibility issues with the Rest Assured.\
+Then, I decided to use Spring Boot 3.5.4, which is compatible with the Rest Assured 5.5.5.
+
 ## Prerequisites
 
 - JDK 24
