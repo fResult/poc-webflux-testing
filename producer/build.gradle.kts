@@ -13,6 +13,15 @@ plugins {
 group = "com.fresult"
 version = "0.0.1"
 
+//val springWebTestClientVersion = "5.5.6"
+val springWebTestClientVersion = "5.3.2"
+
+//repositories {
+//  mavenCentral()
+// Remove if Spring Boot 4.0.0 is released
+//  maven { url = uri("https://repo.spring.io/milestone") }
+//  maven { url = uri("https://repo.spring.io/snapshot") }
+//}
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
@@ -37,6 +46,7 @@ tasks.withType<Test> {
   environment("TESTCONTAINERS_RYUK_DISABLED", "true") // Disable Ryuk container for tests
 }
 
+// https://docs.spring.io/spring-cloud-contract/reference/gradle-project.html#gradle-publishing-stubs-to-artifact-repo
 publishing {
   publications {
     create<MavenPublication>("mavenJava") {
